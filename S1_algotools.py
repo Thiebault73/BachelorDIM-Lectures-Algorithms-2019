@@ -9,7 +9,7 @@ Created on Thu Sep 26 14:17:05 2019
 # d'indice de celui-ci, avant de diviser le nombre max optenu par le nombre
 # total d'indice obtenus.
 
-def test(table:list):
+def average_above_zero(table:list):
     somme = 0
     n = 0
     for i in range(len(table)):
@@ -21,6 +21,6 @@ def test(table:list):
     moyenne = (somme / n)
     return moyenne
 tab = [1,2,3,4]
-somme = test(tab)
+somme = average_above_zero(tab)
 print('resultat =', somme)
 
