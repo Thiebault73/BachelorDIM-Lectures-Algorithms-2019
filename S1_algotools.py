@@ -20,6 +20,7 @@ def average_above_zero(table:list):
         return print ('Division par 0 impossible')
     moyenne = (somme / n)
     return moyenne
+## Test de la fonction
 tab = [1,2,3,4]
 somme = average_above_zero(tab)
 print('resultat =', somme)
