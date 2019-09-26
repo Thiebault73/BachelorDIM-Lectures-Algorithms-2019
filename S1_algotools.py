@@ -2,10 +2,25 @@
 """
 Created on Thu Sep 26 14:17:05 2019
 
-@author: escudera
+@author: bebert
 """
 
-print('Mon premier Python ! ')
+# Fonction qui aditionne les nombres d'un tableau puis compte le nombre
+# d'indice de celui-ci, avant de diviser le nombre max optenu par le nombre
+# total d'indice obtenus.
 
-maVariable=0
-print('maVariable=',maVariable)
+def test(table:list):
+    somme = 0
+    n = 0
+    for i in range(len(table)):
+        if table[i] > 0 :
+            somme = somme + tab[i]
+            n = n + 1
+    if n == 0:
+        return print ('Division par 0 impossible')
+    moyenne = (somme / n)
+    return moyenne
+tab = [1,2,3,4]
+somme = test(tab)
+print('resultat =', somme)
+
