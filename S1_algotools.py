@@ -42,8 +42,77 @@ print('Resultat =', res)
 
 # Fonction  revers_table
 def reverse_table(tab):
-    print(list(reversed(tab)))
-    return tab
+    return print(list(reversed(tab)))
 # Test de la fonction
 tab = [1,2,3,4,5]
 test = reverse_table(tab)
+
+def reverse_table2(tab):
+    buffer = len(tab)-1
+    taille = int((buffer)/2)
+    for id in range(taille):
+        oppid = buffer - id
+        tmp = tab[id]
+        tab[id] = tab[oppid]
+        tab[oppid] = tmp
+    print(tab)
+    
+#Test de la fonction
+tab = [1,2,3,4,5]
+inv = reverse_table2(tab)
+
+
+# Fonction MATRICE
+import numpy as np
+
+''' Création de matrice avec que des 0 '''
+matrix = np.zeros((10,10), dtype=np.int32)
+
+''' Remplissage de la matrice avec des 1 aux coordonnées  ci-dessous '''
+matrix[3:6, 4:8]=np.ones((3,4), dtype=np.int32)
+
+''' Bibliothèque pour les images '''
+import cv2
+
+''' Importation img '''
+img = cv2.imread('truc.png',0)
+
+''' Affichage d'img '''
+'''cv2.imshow('read image', img)
+cv2.waitKey()'''
+ptH =0
+ptB = 0
+for idrow in range(matrix.shape[0]):
+    for idcol in range(matrix.shape[1]):
+        pixVal=[idrow, idcol]
+        if matrix[idrow, idcol] == 1:
+            ptB = pixVal[0,0]
+            print(ptB)
+        
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Sep 26 14:17:01 2019
+
+@author: alben
+"""
+
+#############################
+# Assignement 1:
+# average of only the positive table values
+#.... this is an ugly code
+# FIXME : find out error cases
+def average_above_zero(tab):
+    pos_val_sum=0
+    nElem=0
+    for id in range(len(tab)):
+        if tab[id] >0:
+            nElem+=1
+            pos_val_sum+=tab[id]
+            lastID=id
+    return pos_val_sum/nElem, lastID           
+    
+#test section
+tab_list=[1,2,3,-4,6,-9]
+test, lastID=average_above_zero(tab_list)
+print('test_sum=',test)
