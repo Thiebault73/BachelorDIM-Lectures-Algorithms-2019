@@ -27,14 +27,23 @@ tab = [1,2,3,4]
 somme = average_above_zero(tab)
 print('resultat =', somme)
 
-# Fonction qui récupère le nombre max d'une liste.
+# Fonction qui récupère le nombre max d'une liste et son indice.
 def max_value(tab):
+    valeurMax = 0
     for i in range(len(tab)):
-        if i==max(tab):
-            return tab[i]
-        else:
-         return max(tab)
+        valeurMax = tab[i]
+        if valeurMax == max(tab) :
+            return valeurMax, i
 # Test de la fonction
-tab = [1,4,3]
+tab = [1,5,9,1,6,7]
 res = max_value(tab)
 print('Resultat =', res)
+
+
+# Fonction  revers_table
+def reverse_table(tab):
+    print(list(reversed(tab)))
+    return tab
+# Test de la fonction
+tab = [1,2,3,4,5]
+test = reverse_table(tab)
