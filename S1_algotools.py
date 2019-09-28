@@ -72,22 +72,34 @@ matrix = np.zeros((10,10), dtype=np.int32)
 matrix[3:6, 4:8]=np.ones((3,4), dtype=np.int32)
 
 ''' Bibliothèque pour les images '''
-import cv2
+'''import cv2'''
 
 ''' Importation img '''
-img = cv2.imread('truc.png',0)
+'''img = cv2.imread('truc.png',0)'''
 
 ''' Affichage d'img '''
 '''cv2.imshow('read image', img)
 cv2.waitKey()'''
-ptH =0
+ptD =0
 ptB = 0
+ptH = 0
+ptG = 0
 for idrow in range(matrix.shape[0]):
     for idcol in range(matrix.shape[1]):
         pixVal=[idrow, idcol]
         if matrix[idrow, idcol] == 1:
-            ptB = pixVal[0,0]
-            print(ptB)
+            ptB = pixVal[0]
+           # print(ptB)
+        if matrix[idrow, idcol] == 1:
+            ptD = pixVal[1]
+            #print(ptD)
+        if matrix[idrow, idcol] == 0:
+            ptH = (pixVal[0] - ptB) - 1
+            #print(ptH)
+       # if matrix[idrow, idcol] == 1:
+           # ptG =  
+            
+           # print(ptG)
         
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
