@@ -83,14 +83,14 @@ matrix = np.zeros((10,10), dtype=np.int32)
 matrix[3:6, 4:8]=np.ones((3,4), dtype=np.int32)
 
 ''' Bibliothèque pour les images '''
-'''import cv2'''
+import cv2
 
 ''' Importation img '''
-'''img = cv2.imread('truc.png',0)'''
+img = cv2.imread('truc.png',0)
 
 ''' Affichage d'img '''
-'''cv2.imshow('read image', img)
-cv2.waitKey()'''
+cv2.imshow('read image', img)
+cv2.waitKey()
 ptD =0
 ptB = 0
 ptH = 0
