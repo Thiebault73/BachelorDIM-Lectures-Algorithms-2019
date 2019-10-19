@@ -7,6 +7,7 @@ Created on Mon Sep 30 17:02:59 2019
 
 import pytest
 import S1_algotools as S1
+import numpy as np
 
 def inc_(x):
     return x+1
@@ -71,8 +72,32 @@ def test_ex3_2():
         S1.reverse_table2("YO")
     
 
-       
-       
+####################################
+## Tests unitaire pour l'exercice 4
+####################################
+        
+## On teste  la fonction en lui passant une chaîne de caractère au lieu d'une 
+## liste
+def test_ex4_1():
+     with pytest.raises(TypeError):
+        S1.roi_bbox("YO")
+        
+###################################
+## Tests unitaire pour l'exercice 5
+###################################
+
+## On test le bon fonctionnement de la fonction
+def test_ex5_1():
+    tab = np.ones((10,10), dtype=np.chararray)
+    tab *= ' '
+    tabF = S1.random_full_sparse(tab,3)
+    assert len(np.argwhere(tabF=='X')) == 3  
+    
+## On passe une chaîne de caractère en paramètre
+def test_ex5_2():
+    tab = np.array([1,2,3,4])
+    with pytest.raises(TypeError):
+        S1.random_full_sparse(tab,"YO")
        
        
        
