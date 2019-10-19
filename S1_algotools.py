@@ -23,10 +23,6 @@ def average_above_zero(tab):
     moyenne = (somme / n)
     return moyenne
 
-# Test de la fonction
-tab = [1,2,3,4]
-somme = average_above_zero(tab)
-print('resultat =', somme)
 
 
 
@@ -41,10 +37,6 @@ def max_value(tab):
             valeurMax = tab[i]
             indice = i
     return valeurMax, indice
-# Test de la fonction
-tab = [1,5,9,1,6,7]
-res = max_value(tab)
-print('Resultat =', res)
 
 
 # Fonction  revers_table
@@ -52,9 +44,7 @@ def reverse_table(tab):
     if not(isinstance(tab, list)):
         raise ValueError('average_above_zero, expected a list as input')
     return print(list(reversed(tab)))
-# Test de la fonction
-tab = [1,2,3,4,5]
-test = reverse_table(tab)
+
 
 def reverse_table2(tab):
     if not(isinstance(tab,list)):
@@ -68,9 +58,6 @@ def reverse_table2(tab):
         tab[oppid] = temp
     return(tab)
     
-#Test de la fonction
-tab = [1,2,3,4,5]
-inv = reverse_table2(tab)
 
 
 # Fonction MATRICE
@@ -83,51 +70,89 @@ matrix = np.zeros((10,10), dtype=np.int32)
 matrix[3:6, 4:8]=np.ones((3,4), dtype=np.int32)
 
 ''' Bibliothèque pour les images '''
-import cv2
+#import cv2
 
 ''' Importation img '''
-img = cv2.imread('truc.png',0)
+#img = cv2.imread('truc.png',0)
 
 ''' Affichage d'img '''
-cv2.imshow('read image', img)
-cv2.waitKey()
-ptD =0
-ptB = 0
-ptH = 0
-ptG = matrix.shape[1]
-for idrow in range(matrix.shape[0]):
-    for idcol in range(matrix.shape[1]):
-        pixVal=[idrow, idcol]
-        
-        if matrix[idrow, idcol] == 1:
+#cv2.imshow('read image', img)
+#cv2.waitKey()
+def roi_bbox(img):
+    ptD =0
+    ptB = 0
+    ptH = 0
+    ptG = matrix.shape[1]
+    for idrow in range(matrix.shape[0]):
+        for idcol in range(matrix.shape[1]):
+            pixVal=[idrow, idcol]
             
-           if ptB < idrow :
-              positionB=[idrow, idcol]
-              
-           if ptH == 0:
-               positionH=[idrow, idcol]
-               ptH = 1
-               
-           if ptD < idcol:
-               ptD=idcol
-               positionD=[idrow, idcol]
-               
-           if ptG > idcol:
-               ptG=idcol
-               positionG=[idrow, idcol]
-               
-print(positionH)
-print(positionB)
-print(positionD)          
-print(positionG)       
+            if matrix[idrow, idcol] == 1:
+                
+               if ptB < idrow :
+                  positionB=pixVal
+                  
+               if ptH == 0:
+                   positionH=pixVal
+                   ptH = 1
+                   
+               if ptD < idcol:
+                   ptD=idcol
+                   positionD=pixVal
+                   
+               if ptG > idcol:
+                   ptG=idcol
+                   positionG=pixVal
+                   
+    print(positionH)
+    print(positionB)
+    print(positionD)          
+    print(positionG)       
 
 # Fonction random_full_sparse(table: tableau numpy, K: int)
 import numpy as np
+import random
 def random_full_sparse (tab, K):
-    tab[5,5]:np
-    print(tab)
+    if not(isinstance(K, int)):
+        raise ValueError('Entier attendu')
+    tableau = tab
+    lgTab = np.shape(tableau)
+    case = lgTab[0] + lgTab[1]
+    if(case < K):
+        raise ValueError('Tableau trop petit')
+        
+    i = 0
+    while i < K:
+        row = random.randint(0,tableau.shape[0]-1)
+        col = random.randint(0,tableau.shape[1]-1)
+        if(tableau[row, col] != 'X'):
+            tableau[row, col] = 'X'
+            i = i + 1
+    return tableau
     
-    
+##### Section de test####
 
-    
-    
+# Test de la fonction 
+tab = [1,2,3,4]
+somme = average_above_zero(tab)
+print('resultat =', somme)
+
+
+# Test de la fonction Max value aberage above zero
+tab = [1,5,9,1,6,7]
+res = max_value(tab)
+print('Resultat =', res)
+
+## Test de la fonction reverse table 1
+tab = [1,2,3,4,5]
+test = reverse_table(tab)
+
+#Test de la fonction reverse table 2
+tab = [1,2,3,4,5]
+inv = reverse_table2(tab)
+
+
+#Test de la fonction random full sparse
+test = np.ones((10,10), dtype=np.chararray)
+test = test * ''
+print('Tableau test : {tabTest}'.format(tabTest=random_full_sparse(test,7)))
