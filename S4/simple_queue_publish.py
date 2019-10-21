@@ -37,4 +37,3 @@ def simple_queue_publish(concurrency, nb = 10):
                               
         print(" [x] Sent '{persistent} Salut'".format(i=i+1,persistent=msg_pers))        
     connection.close()
-    
