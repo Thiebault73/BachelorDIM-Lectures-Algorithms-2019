@@ -7,6 +7,7 @@ Created on Tue Oct  1 10:11:22 2019
 import config
 import os
 import pika
+
   
 def simple_queue_publish(concurrency, nb = 10):
     ##
