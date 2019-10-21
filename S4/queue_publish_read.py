@@ -4,34 +4,22 @@ Created on Tue Oct  1 10:43:58 2019
 
 @author: bebertt
 """
-import config
 import argparse
-import os
-import pika
+import simple_queue_publish as publi
+import simple_queue_read as read
 
-def callback(ch, method, properties, body):
-    print(" [x] Received %r" % body)
+parser = argparse.ArgumentParser(description="Publier ou lire un message")
+parser.add_argument("-r", "--read", help="Lire un message", 
+                    action="store_true")
 
+parser.add_argument("-p", "--publi", help="Publier une message", 
+                    action="store_true")
 
+args = parser.parse_args()
 
-amqp_url=config.amqp_url
-
-
-# Parse CLODUAMQP_URL (fallback to localhost)
-url = os.environ.get('CLOUDAMQP_URL',amqp_url)
-params = pika.URLParameters(url)
-params.socket_timeout = 5
-
-connection = pika.BlockingConnection(params) # Connect to CloudAMQP
-
-channel = connection.channel()
-
-channel.queue_declare(queue='hello')
-
-channel.basic_publish(exchange='',
-                      routing_key='hello',
-                      body='Hello World!')
-                          
-print(" [x] Sent 'Hello World!'")
-    
-connection.close()
+if (args.read):
+    read.simple_queue_read()
+elif(args.publi):
+    publi.simple_queue_publish()
+else:
+    print("Error")
