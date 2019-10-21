@@ -8,6 +8,7 @@ import config
 import os
 import pika
 
+
 def callback(ch, method, properties, body):
     ##
     # Fonction qui compte le nombre de message lus

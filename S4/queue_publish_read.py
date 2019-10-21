@@ -24,3 +24,4 @@ elif(args.publi):
     publi.simple_queue_publish(args.concurrency)
 else:
     print("Veuillez préciser -r ou -p pour pouvoir lire ou publier un message")
+    
