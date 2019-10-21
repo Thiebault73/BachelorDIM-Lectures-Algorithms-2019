@@ -9,12 +9,25 @@ import os
 import pika
 
 def callback(ch, method, properties, body):
+    ##
+    # Fonction qui compte le nombre de message lus
+    # Arguments :
+    # @param ch
+    # @param method
+    # @param properties
+    # @param body
+    # affiche le nombre de message et le message ci-dessous
+    # ne retourne rien
     print(" [x] Received %r" % body)
     print("Nombre de message : ")
     print(method.delivery_tag)
     
-def simple_queue_read():
-    
+def simple_queue_read(concurrency):
+    ##
+    # Fonction qui lit le ou les messages
+    # Argument :
+    # @param concurrency
+    # ne retourne rien
     amqp_url = config.amqp_url
 
     # Parse CLODUAMQP_URL (fallback to localhost)

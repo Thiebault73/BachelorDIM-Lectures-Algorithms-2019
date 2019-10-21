@@ -9,7 +9,14 @@ import os
 import pika
 
     
-def simple_queue_publish():
+def simple_queue_publish(concurrency, nb = 10):
+    ##
+    # Fonction d'envoi de message
+    # Arguments :
+    # @param concurrency
+    # @param nb
+    #return Rien
+    
     amqp_url=config.amqp_url
     
     # Parse CLODUAMQP_URL (fallback to localhost)
@@ -18,16 +25,16 @@ def simple_queue_publish():
     params.socket_timeout = 5
     
     connection = pika.BlockingConnection(params) # Connect to CloudAMQP
-    
+    msg_pers = "YOO"
     channel = connection.channel()
     
     channel.queue_declare(queue='presentation')
     
-    
-    channel.basic_publish(exchange='',
-                          routing_key='presentation',
-                          body=config.userName)
+    for i in range(nb):
+        channel.basic_publish(exchange='',
+                              routing_key='presentation',
+                              body=config.userName)
                               
-    print(" [x] Sent 'Hello World!'")
+        print(" [x] Sent '{persistent} Salut'".format(i=i+1,persistent=msg_pers))
         
     connection.close()
