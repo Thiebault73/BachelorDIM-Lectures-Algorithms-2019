@@ -35,6 +35,5 @@ def simple_queue_publish(concurrency, nb = 10):
                               routing_key='presentation',
                               body=config.userName)
                               
-        print(" [x] Sent '{persistent} Salut'".format(i=i+1,persistent=msg_pers))
-        
+        print(" [x] Sent '{persistent} Salut'".format(i=i+1,persistent=msg_pers))        
     connection.close()
